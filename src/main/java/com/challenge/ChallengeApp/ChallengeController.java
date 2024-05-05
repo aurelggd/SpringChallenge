@@ -10,21 +10,28 @@ import java.util.List;
 
 @RestController
 public class ChallengeController {
-    private List<Challenge> challenges = new ArrayList<>();
 
-    public ChallengeController() {
-        Challenge challenge1 = new Challenge(1L, "January", "Learn a new language");
-        challenges.add(challenge1);
+    private ChallengeService challengeService;
+
+    public ChallengeController(ChallengeService challengeService) {
+
+        this.challengeService = challengeService;
+
     }
 
     @GetMapping("/challenges")
     public List<Challenge> getAllChallenges() {
-        return challenges;
+
+        return challengeService.getAllChallenges();
     }
 
     @PostMapping("/challenges")
     public String addChallenge(@RequestBody Challenge challenge) {
-        challenges.add(challenge);
-        return "Challenge added successfully";
+       boolean isChallengeAdded = challengeService.addChallenge(challenge);
+       if (isChallengeAdded) {
+           return "Challenge added successfully";
+       }
+       else
+           return "Challenge not added";
     }
 }
