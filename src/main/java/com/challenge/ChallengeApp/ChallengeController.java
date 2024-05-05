@@ -49,6 +49,7 @@ public class ChallengeController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateChallenge(@PathVariable Long id, @RequestBody Challenge updatedChallenge) {
         boolean isChallengeUpdated = challengeService.updateChallenge(id, updatedChallenge);
+
         if (isChallengeUpdated) {
             return new ResponseEntity<>("Challenge updated successfully", HttpStatus.OK);
         }
@@ -60,6 +61,7 @@ public class ChallengeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteChallenge(@PathVariable Long id) {
         boolean isChallengeDeleted = challengeService.deleteChallenge(id);
+
         if (isChallengeDeleted) {
             return new ResponseEntity<>("Challenge deleted successfully", HttpStatus.OK);
         }

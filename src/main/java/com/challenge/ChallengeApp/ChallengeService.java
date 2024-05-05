@@ -12,9 +12,6 @@ import java.util.Optional;
 
 @Service
 public class ChallengeService {
-
-
-    //private final List<Challenge> challenges = new ArrayList<>();
     private Long nextId = 1L;
 
     @Autowired
@@ -45,14 +42,12 @@ public class ChallengeService {
     }
 
     public Challenge getChallenge(String month) {
-
         Optional<Challenge> challenge = challengeRepository.findAllByMonthIgnoreCase(month);
         return challenge.orElse(null);
     }
 
 
     public boolean updateChallenge(Long id, Challenge updatedChallenge) {
-
         Optional<Challenge> challenge = challengeRepository.findById(id);
 
         if(challenge.isPresent()){
@@ -69,6 +64,7 @@ public class ChallengeService {
     public boolean deleteChallenge(Long id) {
 
         Optional<Challenge> challenge = challengeRepository.findById(id);
+
         if(challenge.isPresent()){
             challengeRepository.deleteById(id);
             return true;
