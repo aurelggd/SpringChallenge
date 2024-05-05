@@ -1,6 +1,8 @@
 package com.challenge.ChallengeApp;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
@@ -40,5 +42,17 @@ public class ChallengeService {
             }
         }
         return null;
+    }
+
+
+    public boolean updateChallenge(Long id, Challenge updatedChallenge) {
+        for (Challenge challenge : challenges){
+            if (challenge.getId().equals(id)){
+                challenge.setMonth(updatedChallenge.getMonth());
+                challenge.setDescription(updatedChallenge.getDescription());
+                return true;
+            }
+        }
+        return false;
     }
 }
