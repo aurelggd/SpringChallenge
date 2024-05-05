@@ -31,4 +31,14 @@ public class ChallengeService {
 
         return true;
     }
+
+    public Challenge getChallenge(Long id) {
+
+        for (Challenge challenge : challenges){
+            if (challenge.getId().equals(id)){
+                return challenge;
+            }
+        }
+        return null;
+    }
 }
