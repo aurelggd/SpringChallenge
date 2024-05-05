@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/challenges")
 public class ChallengeController {
 
     private ChallengeService challengeService;
@@ -18,13 +19,13 @@ public class ChallengeController {
 
     }
 
-    @GetMapping("/challenges")
+    @GetMapping
     public ResponseEntity<List<Challenge>> getAllChallenges() {
 
         return new ResponseEntity<>(challengeService.getAllChallenges(), HttpStatus.OK);
     }
 
-    @PostMapping("/challenges")
+    @PostMapping
     public ResponseEntity<String> addChallenge(@RequestBody Challenge challenge) {
        boolean isChallengeAdded = challengeService.addChallenge(challenge);
        if (isChallengeAdded) {
@@ -34,7 +35,7 @@ public class ChallengeController {
            return new ResponseEntity<>("Challenge not added", HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/challenges/{month}")
+    @GetMapping("/{month}")
     public ResponseEntity<Challenge> getChallenges(@PathVariable String month) {
 
         Challenge challenge = challengeService.getChallenge(month);
@@ -45,7 +46,7 @@ public class ChallengeController {
             return new ResponseEntity<>(challenge, HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/challenges/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> updateChallenge(@PathVariable Long id, @RequestBody Challenge updatedChallenge) {
         boolean isChallengeUpdated = challengeService.updateChallenge(id, updatedChallenge);
         if (isChallengeUpdated) {
@@ -55,4 +56,17 @@ public class ChallengeController {
             return new ResponseEntity<>("Challenge not updated", HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteChallenge(@PathVariable Long id) {
+        boolean isChallengeDeleted = challengeService.deleteChallenge(id);
+        if (isChallengeDeleted) {
+            return new ResponseEntity<>("Challenge deleted successfully", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Challenge not deleted", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
+

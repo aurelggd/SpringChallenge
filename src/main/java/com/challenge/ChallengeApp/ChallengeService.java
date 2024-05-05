@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class ChallengeService {
-    private List<Challenge> challenges = new ArrayList<>();
+    private final List<Challenge> challenges = new ArrayList<>();
     private Long nextId = 1L;
 
     public ChallengeService() {
@@ -54,5 +54,9 @@ public class ChallengeService {
             }
         }
         return false;
+    }
+
+    public boolean deleteChallenge(Long id) {
+        return challenges.removeIf(challenge -> challenge.getId().equals(id));
     }
 }
