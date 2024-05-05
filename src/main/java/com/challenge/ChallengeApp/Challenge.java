@@ -1,5 +1,5 @@
 package com.challenge.ChallengeApp;
-
+//Ceci est un commentaire test
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
