@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import ChallengeList from './components/ChallengeList';
+import { useState } from 'react';
+
+
 
 function App() {
+
+  const [challenges, setChallenges] = useState([
+    {id: 1 , month: 'January', description: 'First Challenge Description'},
+    {id: 2 , month: 'February', description: 'Second Challenge Description'}
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Monthly Challenges</h1>
+      <ChallengeList challenges={challenges} />
     </div>
   );
 }
