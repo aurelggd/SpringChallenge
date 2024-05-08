@@ -1,6 +1,7 @@
 import './App.css';
 import ChallengeList from './components/ChallengeList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -10,6 +11,14 @@ function App() {
     {id: 1 , month: 'January', description: 'First Challenge Description'},
     {id: 2 , month: 'February', description: 'Second Challenge Description'}
   ]);
+
+  useEffect(() => {
+    const fetchChallenges = async () => {
+      const response = await axios.get('http://localhost:8080/challenges')
+    };
+
+    fetchChallenges();
+  }, []);
 
   return (
     <div className="App">
