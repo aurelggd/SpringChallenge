@@ -3,6 +3,7 @@ import ChallengeList from "./components/ChallengeList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddChallenge from "./components/AddChallenge";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [challenges, setChallenges] = useState([]);
