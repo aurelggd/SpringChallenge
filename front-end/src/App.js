@@ -7,14 +7,12 @@ import axios from 'axios';
 
 function App() {
 
-  const [challenges, setChallenges] = useState([
-    {id: 1 , month: 'January', description: 'First Challenge Description'},
-    {id: 2 , month: 'February', description: 'Second Challenge Description'}
-  ]);
+  const [challenges, setChallenges] = useState([]);
 
   useEffect(() => {
     const fetchChallenges = async () => {
-      const response = await axios.get('http://localhost:8080/challenges')
+      const response = await axios.get('http://localhost:8080/challenges');
+      setChallenges(response.data);
     };
 
     fetchChallenges();
