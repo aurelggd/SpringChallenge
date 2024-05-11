@@ -36,8 +36,8 @@ function App() {
     };
 
     return (
-      <div className="App">
-        <h1>Monthly Challenges</h1>
+      <div className="container mt-5">
+        <h1 className="text-center mb-4">Monthly Challenges</h1>
         <AddChallenge onChallengeAdded={handleChallengeAdded} />
         <ChallengeList challenges={challenges} />
       </div>
